@@ -1,0 +1,5 @@
+node_modules/
+context/
+qa/
+*.zip
+__pycache__/

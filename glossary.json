@@ -1,0 +1,18 @@
+[
+  {"en":"World Book","ko":"월드북","aliases":["World Books"],"topic":"world-books/"},
+  {"en":"Lorebook","ko":"로어북","aliases":["Lorebooks"],"topic":"world-books/"},
+  {"en":"Bible","ko":"설정 기준 문서","topic":"weaver/"},
+  {"en":"Impersonate","ko":"대리 작성","topic":"chatting/"},
+  {"en":"Dry Run","ko":"모의 실행","topic":"chatting/"},
+  {"en":"Guided Generation","ko":"유도 생성","topic":"chatting/"},
+  {"en":"Portrait","ko":"초상화","topic":"characters/"},
+  {"en":"Preset","ko":"프리셋","aliases":["Presets"],"topic":"presets/"},
+  {"en":"Connection","ko":"연결","aliases":["Connections","Provider","API Key"],"topic":"connections/"},
+  {"en":"Character","ko":"캐릭터","aliases":["Characters"],"topic":"characters/"},
+  {"en":"Persona","ko":"페르소나","aliases":["Personas"],"topic":"personas/"},
+  {"en":"Keyword","ko":"키워드","aliases":["Keywords","Activation"],"topic":"world-books/"},
+  {"en":"Prompt","ko":"프롬프트","topic":"presets/"},
+  {"en":"Memory Cortex","ko":"메모리 코텍스","topic":"chatting/memory"},
+  {"en":"Import","ko":"가져오기","topic":"data-portability/"},
+  {"en":"Macro","ko":"매크로","aliases":["Macros"],"topic":"presets/macros"}
+]

@@ -1,0 +1,12 @@
+{
+  "version":"0.1.0",
+  "name":"Docs Tutor",
+  "identifier":"lv_docs_tutor",
+  "author":"mallang0723",
+  "github":"https://github.com/mallang0723/LV-docsTutor",
+  "homepage":"https://github.com/mallang0723/marinara-docs-tutor",
+  "description":"공식 가이드로 배우는 Docs Tutor · 루미버스용 · 비공식 (Unofficial, for Lumiverse)",
+  "permissions":["characters","world_books"],
+  "entry_backend":"dist/backend.js",
+  "entry_frontend":"dist/frontend.js"
+}
