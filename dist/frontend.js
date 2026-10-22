@@ -488,6 +488,24 @@ async function hostLocales(document2, fetcher = fetch) {
   return { en: {}, ko: {} };
 }
 
+// src/ids.js
+var hex = Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, "0"));
+function uuid() {
+  const c = globalThis.crypto;
+  if (typeof c?.randomUUID === "function")
+    return c.randomUUID();
+  const b = new Uint8Array(16);
+  if (typeof c?.getRandomValues === "function")
+    c.getRandomValues(b);
+  else
+    for (let i = 0;i < 16; i++)
+      b[i] = Math.floor(Math.random() * 256);
+  b[6] = 64 | b[6] & 15;
+  b[8] = 128 | b[8] & 63;
+  const h = [...b].map((n) => hex[n]);
+  return `${h.slice(0, 4).join("")}-${h.slice(4, 6).join("")}-${h.slice(6, 8).join("")}-${h.slice(8, 10).join("")}-${h.slice(10).join("")}`;
+}
+
 // src/frontend.js
 function setup(ctx) {
   let alive = true;
@@ -495,7 +513,7 @@ function setup(ctx) {
   const rpc = (op, args = {}) => new Promise((resolve, reject) => {
     if (!alive)
       return reject(Error("확장이 비활성화되었습니다."));
-    const id = crypto.randomUUID();
+    const id = uuid();
     const timer = setTimeout(() => {
       pending.delete(id);
       reject(Error("응답 시간 초과. 서버 변경이 일부 완료되었을 수 있습니다. 상태를 확인한 뒤 재실행하세요."));

@@ -10,13 +10,14 @@ Lumiverse 공식 확장이 아니며 해당 팀이 제작하거나 승인·보�
 
 | 항목 | 내용 |
 |---|---|
-| 이 확장 | v0.1.0 |
+| 이 확장 | v0.1.1 |
 | 검증한 호스트 | **Lumiverse 1.2.5** (`staging` 브랜치 `cec7676c`) |
 | 검증한 문서 | 같은 서버(Lumiverse 1.2.5)에 들어 있는 공식 가이드 (`/api/v1/docs/catalog`, `/api/v1/docs/file/:encoded`) |
 | 설치 가능 범위 | `spindle.json`에 최소 호스트 버전 필드가 없어, 호스트가 버전으로 설치를 막지 않습니다 |
-| 검증 날짜 | 2026-10-17 |
+| 검증 날짜 | 2026-10-17 (v0.1.0 설치·실행) · 2026-10-22 (v0.1.1 http 접속 fixture) |
 
 - **Lumiverse 1.2.5에서만 설치·실행을 검증했습니다.** 다른 버전에서도 설치는 될 수 있지만 동작은 보증하지 않습니다. 캐릭터·월드북 SDK나 공식 가이드 엔드포인트가 바뀌면 동작하지 않을 수 있으니, 문제가 생기면 사용 중인 Lumiverse 버전을 함께 알려 주세요.
+- v0.1.1은 휴대폰에서 Tailscale 주소처럼 localhost가 아닌 `http://` 주소로 열 때 캐릭터 목록·생성 요청이 "crypto.randomUUID is not a function"으로 실패하던 문제만 고쳤습니다(요청 ID 생성 방식 변경). 이 변경은 단위 테스트와 http fixture(Chromium·Firefox)로 확인했고, Lumiverse 1.2.5 설치·실행 검증은 v0.1.0 때 한 것입니다.
 - 가이드는 설치된 서버에서 읽기 때문에 Lumiverse를 업데이트하면 결과도 달라질 수 있습니다. 화이트리스트 문서가 없어지면 쓰기 전에 멈춥니다.
 
 ## 사용법
@@ -57,6 +58,7 @@ Node.js와 Bun이 필요하며 별도 npm 의존성은 없습니다.
 
 - `npm test`: 변환·소유권·실패 복구·문서/로케일 어댑터 테스트
 - `bun run build.mjs`: 백엔드·프론트엔드 ESM 빌드
+- `npm run qa:insecure`: localhost가 아닌 http 주소(보안 컨텍스트 아님)에서 Chromium·Firefox로 fixture를 열어 캐릭터 목록 요청이 되는지 확인합니다(`PLAYWRIGHT_MODULE`, 선택: `FIREFOX_BIN`·`CHROMIUM_BIN`). 설치 검증이 아닙니다.
 - `tests/browser.py`: Playwright + Chromium headless fixture. `--docs`로 제공한 문서는 로컬 테스트에만 사용하며 저장소에 넣지 마세요.
 
 `dist/backend.js`, `dist/frontend.js`는 Git 추적 대상입니다. 소스 변경 시 같이 재빌드해야 합니다. fixture 검증은 실제 Spindle 설치·권한 승인·프롬프트 미리보기 검증을 대체하지 않습니다.

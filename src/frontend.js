@@ -1,12 +1,13 @@
 import {mountTutor} from './ui.js';
 import {readDocuments,hostLocales} from './documents.js';
+import {uuid} from './ids.js';
 
 export function setup(ctx) {
   let alive=true;
   const controller=new AbortController(),pending=new Map();
   const rpc=(op,args={})=>new Promise((resolve,reject)=>{
     if(!alive)return reject(Error('확장이 비활성화되었습니다.'));
-    const id=crypto.randomUUID();
+    const id=uuid();
     const timer=setTimeout(()=>{pending.delete(id);reject(Error('응답 시간 초과. 서버 변경이 일부 완료되었을 수 있습니다. 상태를 확인한 뒤 재실행하세요.'));},300000);
     pending.set(id,{resolve,reject,timer});
     ctx.sendToBackend({id,op,args});
